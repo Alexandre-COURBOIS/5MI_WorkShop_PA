@@ -36,7 +36,7 @@ map.on('load', function () {
                     'properties': {},
                     'geometry': {
                         'type': 'LineString',
-                        'coordinates': data.order
+                        'coordinates': data.road
                     }
                 }
             });

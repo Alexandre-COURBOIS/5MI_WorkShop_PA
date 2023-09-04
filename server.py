@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import pandas as pd
 
-from external_request import xlsx_to_json, get_patients_coordinates
+from external_request import xlsx_to_json, get_patients_coordinates, get_full_route
 from algorithm import resolve_tsp
 
 app = Flask(__name__)
@@ -16,6 +16,7 @@ def run_script():
     ordered_indices = resolve_tsp(patients_with_coords)
 
     ordered_coordinates = [patients_with_coords[i]['coords'] for i in ordered_indices]
+    ordered_route = get_full_route(ordered_indices, patients_with_coords)
     ordered_patients = [patients_with_coords[i]['patient'] for i in ordered_indices]
 
     for patient in ordered_patients:
@@ -25,7 +26,7 @@ def run_script():
 
     print(ordered_coordinates)
     print(ordered_patients)
-    return jsonify({"order": ordered_coordinates, "patients": ordered_patients})
+    return jsonify({"order": ordered_coordinates,"road": ordered_route, "patients": ordered_patients})
 
 if __name__ == "__main__":
     app.run(port=5000)
