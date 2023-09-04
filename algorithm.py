@@ -1,13 +1,12 @@
-# server.py
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-import math
-
 import math
 
 #  Calcule la distance euclidienne entre les deux points (vol d'oiseau)
 def distance(p1, p2):
-    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+    # Adjust this function to get coordinates from the updated data structure
+    coords1 = p1['coords']
+    coords2 = p2['coords']
+    return math.sqrt((coords1[0] - coords2[0]) ** 2 + (coords1[1] - coords2[1]) ** 2)
+
 
 # Retourne la distance totale du parcours à réaliser
 def total_distance(points, order):
@@ -46,25 +45,8 @@ def two_opt(order, points):
     return order
 
 #Combine l'utilisation de l'algorithme du plus proche voisin et test les segments sur chaque point pour déterminer le plus proche
-def resolve_tsp(points):
-    order = nearest_neighbor(points)
-    order = two_opt(order, points)
-    ordered_points = [points[i] for i in order]
-    return ordered_points
+def resolve_tsp(patients_with_coords):
+    order = nearest_neighbor(patients_with_coords)
+    order = two_opt(order, patients_with_coords)
 
-
-app = Flask(__name__)
-CORS(app)
-
-@app.route('/run-script', methods=['POST'])
-
-def run_script():
-    data = request.json
-    print(request.json)
-    points = data['coordinates']
-    order = resolve_tsp(points)
-    return jsonify({"order": order})
-
-if __name__ == "__main__":
-    app.run(port=5000)
-
+    return order
