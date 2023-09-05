@@ -8,3 +8,29 @@
     line-height: 25px;
     font-weight: bold;
 }
+
+.mapboxgl-popup {
+    font-family: 'Arial', sans-serif;
+    background-color: #5DBE8B;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+}
+
+.mapboxgl-popup-content {
+    padding: 15px;
+}
+
+.mapboxgl-popup-content p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.mapboxgl-popup-content p:first-child {
+    font-weight: 600; /* Make the address bold */
+    margin-top: 0;
+}
+
+.mapboxgl-popup-content p:last-child {
+    margin-bottom: 0;
+}

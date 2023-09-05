@@ -19,9 +19,21 @@ map.on('load', function () {
                 el.innerHTML = index;
 
                 const address = data.patients[index].Adresse;
+                const treatmentTime = data.patients[index]["Durée des soins"];
+                const treatment = data.patients[index]["Soins"];
+                const allergy = data.patients[index]["Allergies"] == null ? "Néant" : data.patients[index]["Allergies"];
 
-                var popup = new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<p>${address}</p>`);
+                var popupContent = `
+                    <div class="popup-content-wrapper">
+                        <p class="address">${address}</p>
+                        <p class="treatment">A réaliser : ${treatment}</p>
+                        <p class="treatment-time">Durée : ${treatmentTime} minutes</p>
+                        <p class="allergy">Allergie à considérer : ${allergy}</p>
+                    </div>
+                `;
+
+                var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupContent);
+
 
                 const marker = new mapboxgl.Marker(el)
                     .setLngLat(coord)
