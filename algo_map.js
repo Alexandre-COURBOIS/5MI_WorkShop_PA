@@ -18,40 +18,9 @@ map.on('load', function () {
                 el.className = 'marker';
                 el.innerHTML = index;
 
-                const address = data.patients[index].Adresse;
-
-                var popup = new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<p>${address}</p>`);
-
                 const marker = new mapboxgl.Marker(el)
                     .setLngLat(coord)
-                    .setPopup(popup)
                     .addTo(map);
-            });
-
-            map.addSource('route', {
-                'type': 'geojson',
-                'data': {
-                    'type': 'Feature',
-                    'properties': {},
-                    'geometry': {
-                        'type': 'LineString',
-                        'coordinates': data.order
-                    }
-                }
-            });
-            map.addLayer({
-                'id': 'route',
-                'type': 'line',
-                'source': 'route',
-                'layout': {
-                    'line-join': 'round',
-                    'line-cap': 'round'
-                },
-                'paint': {
-                    'line-color': '#1a3f75',
-                    'line-width': 4
-                }
             });
         });
 });
