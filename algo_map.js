@@ -22,6 +22,31 @@ map.on('load', function () {
                     .setLngLat(coord)
                     .addTo(map);
             });
+
+            map.addSource('route', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'properties': {},
+                    'geometry': {
+                        'type': 'LineString',
+                        'coordinates': data.order
+                    }
+                }
+            });
+            map.addLayer({
+                'id': 'route',
+                'type': 'line',
+                'source': 'route',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#1a3f75',
+                    'line-width': 4
+                }
+            });
         });
 });
 
