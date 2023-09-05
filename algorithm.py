@@ -1,8 +1,7 @@
 import math
 
-#  Calcule la distance euclidienne entre les deux points (vol d'oiseau)
+#  Calcule la distance entre les deux points (vol d'oiseau)
 def distance(p1, p2):
-    # Adjust this function to get coordinates from the updated data structure
     coords1 = p1['coords']
     coords2 = p2['coords']
     return math.sqrt((coords1[0] - coords2[0]) ** 2 + (coords1[1] - coords2[1]) ** 2)

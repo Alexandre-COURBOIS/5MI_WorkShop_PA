@@ -24,8 +24,6 @@ def run_script():
             if pd.isna(value):
                 patient[key] = None
 
-    print(ordered_coordinates)
-    print(ordered_patients)
     return jsonify({"order": ordered_coordinates,"road": ordered_route, "patients": ordered_patients})
 
 if __name__ == "__main__":
